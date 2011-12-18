@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Cracow Mobi 2011</string>
+    <string name="preference_cat_title">Kategoria preferencji</string>
+    <string name="username_title">Username: </string>
+    <string name="show_preferences">Ustawienia</string>
+
+    <!-- preference keys -->
+    <string name="pk_username">pk_username</string>
+</resources>

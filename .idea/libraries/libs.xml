@@ -1,0 +1,23 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/acra-4.2.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/gson-1.7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/guava-10.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/joda-time-1.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/org.restlet-2.0.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/org.restlet.ext.httpclient-2.0.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/javax.inject.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/roboguice-1.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/guice-2.0-no_aop.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/libs/javax.inject-javadoc.zip!/" />
+      <root url="jar://$PROJECT_DIR$/lib/roboguice-1.1.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/libs/javax.inject-src.zip!/" />
+      <root url="jar://$PROJECT_DIR$/lib/roboguice-1.1.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

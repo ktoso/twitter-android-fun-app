@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="test libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs_test/junit-4.8.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs_test/robolectric-0.9.4-all.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs_test/fest-assert-android-2.0-SNAPSHOT.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs_test/fest-util-android-1.1.6.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/libs_test/robotium-solo-2.5-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/libs_test/robolectric-0.9.4-all.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs_test/robolectric-0.9.4-src.jar!/" />
+      <root url="file://$PROJECT_DIR$/../fest-assertions-android/fest-assert-android/src/main/java" />
+    </SOURCES>
+  </library>
+</component>
