@@ -9,5 +9,7 @@ public class PrefsActivity extends PreferenceActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        addPreferencesFromResource(R.xml.prefs_for_twitter);
     }
 }

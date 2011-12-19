@@ -1,8 +1,8 @@
 package pl.compendium.hello.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import pl.compendium.hello.R;
-import roboguice.activity.RoboActivity;
 import roboguice.util.Ln;
 
 import java.io.Closeable;
