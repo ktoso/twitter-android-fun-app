@@ -8,7 +8,7 @@ import roboguice.util.Ln;
 import java.io.Closeable;
 import java.io.IOException;
 
-public class LifeCycleActivity extends RoboActivity {
+public class LifeCycleActivity extends Activity {
 
     private Closeable twitterExample;
 

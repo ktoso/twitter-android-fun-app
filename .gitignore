@@ -1,5 +1,7 @@
-bin
 out
+*iml
 target
+bin
 *apk
-*.iml
+*class
+*~
