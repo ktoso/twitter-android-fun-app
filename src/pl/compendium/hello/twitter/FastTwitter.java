@@ -1,7 +1,9 @@
 package pl.compendium.hello.twitter;
 
+import pl.compendium.hello.db.dao.TweetsRepository;
 import pl.compendium.hello.twitter.model.Tweet;
 
+import javax.inject.Inject;
 import javax.inject.Singleton;
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,14 +15,9 @@ import static com.google.common.collect.Lists.newArrayList;
 public class FastTwitter implements Twitter {
     
     List<Tweet> tweets = newArrayList();
-    String user = "";
 
-    public FastTwitter() {
-    }
-
-    public FastTwitter(String user) {
-        this.user = user;
-    }
+    @Inject
+    TweetsRepository tweetsRepository;
 
     @Override
     public List<Tweet> publicTimeline() {
@@ -30,6 +27,9 @@ public class FastTwitter implements Twitter {
     @Override
     public void post(Tweet tweet) {
         tweets.add(tweet);
+
+        tweetsRepository.save(tweet);
+
         sortTweets();
     }
 

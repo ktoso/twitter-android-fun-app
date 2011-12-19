@@ -26,8 +26,12 @@ public class MainActivityTest {
         // given
         String expectedText = "Hello Warszawa!";
 
+
+
         // when
-        TextView hello = mainActivity.;
+        mainActivity.send.performClick();
+
+        TextView hello = mainActivity.hello;
         String text = hello.getText().toString();
 
         // then

@@ -8,5 +8,5 @@ import java.lang.annotation.*;
 @BindingAnnotation
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.FIELD, ElementType.ANNOTATION_TYPE})
-public @interface TAG {
+public @interface SQLite {
 }

@@ -1,21 +1,19 @@
 package pl.compendium.hello.activity;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.*;
 import com.google.inject.Inject;
-import pl.project13.hello.R;
-import pl.project13.hello.guice.annotation.Author;
-import pl.project13.hello.guice.annotation.Slow;
-import pl.project13.hello.twitter.Twitter;
-import pl.project13.hello.twitter.model.Tweet;
+import pl.compendium.hello.R;
+import pl.compendium.hello.db.DBConstants;
+import pl.compendium.hello.guice.annotation.Author;
+import pl.compendium.hello.twitter.SQLiteTwitter;
+import pl.compendium.hello.twitter.model.Tweet;
 import roboguice.activity.RoboActivity;
 import roboguice.inject.InjectView;
 import roboguice.util.Ln;
-
-import java.util.List;
 
 public class MainActivity extends RoboActivity implements View.OnClickListener {
 
@@ -24,8 +22,7 @@ public class MainActivity extends RoboActivity implements View.OnClickListener {
     String AUTHOR;
 
     @Inject
-    @Slow
-    Twitter twitter;
+    SQLiteTwitter twitter;
 
     @InjectView(R.id.msg)
     EditText msg;
@@ -42,8 +39,8 @@ public class MainActivity extends RoboActivity implements View.OnClickListener {
     @Inject
     LayoutInflater inflater;
 
-    ArrayAdapter tweetsAdapter;
-    List<Tweet> visibleTweets;
+    private SimpleCursorAdapter tweetsAdapter;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,21 +48,22 @@ public class MainActivity extends RoboActivity implements View.OnClickListener {
 
         setContentView(R.layout.main);
 
-        twitter.post(new Tweet("Hello World", AUTHOR));
-        twitter.post(new Tweet("Hello Warszawa", AUTHOR));
-        twitter.post(new Tweet("Hello Poznan", AUTHOR));
-        twitter.post(new Tweet("Hello Wroclaw", AUTHOR));
-
-        visibleTweets = twitter.publicTimeline();
-
-        for (Tweet tweet : visibleTweets) {
-            Ln.i(tweet.toString());
-        }
-
         send.setOnClickListener(this);
 
-        //noinspection unchecked
-        tweetsAdapter = new TweetAdapter();
+        // load tweets from database
+        Cursor allTweets = twitter.publicTimelineCursor();
+
+        tweetsAdapter = new SimpleCursorAdapter(this,
+                                                R.layout.tweet,
+                                                allTweets,
+                                                new String[]{
+                                                        DBConstants.AUTHOR_COLUMN_NAME,
+                                                        DBConstants.MSG_COLUMN_NAME
+                                                },
+                                                new int[]{
+                                                        R.id.tweet_author,
+                                                        R.id.tweet_message
+                                                });
         tweets.setAdapter(tweetsAdapter);
     }
 
@@ -73,34 +71,10 @@ public class MainActivity extends RoboActivity implements View.OnClickListener {
     public void onClick(View view) {
         Tweet tweet = new Tweet(msg.getText().toString(), AUTHOR);
 
-        Ln.i("Creating post: %s", tweet);
+        Ln.i("Creating tweet: %s", tweet);
         twitter.post(tweet);
 
-        visibleTweets = twitter.publicTimeline();
-//        tweetsAdapter.notifyDataSetChanged(); // todo this is needed :-)
+        tweetsAdapter.notifyDataSetChanged();
     }
 
-    private class TweetAdapter extends ArrayAdapter<Tweet> {
-        public TweetAdapter() {
-            super(MainActivity.this, R.layout.tweet, R.id.tweet_message, MainActivity.this.visibleTweets);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            View row;
-
-            if (null == convertView) {
-                row = inflater.inflate(R.layout.tweet, null);
-            } else {
-                row = convertView;
-            }
-
-            TextView tv = (TextView) row.findViewById(R.id.tweet_message);
-
-            Tweet theTweet = getItem(position);
-            tv.setText(theTweet.toString());
-
-            return row;
-        }
-    }
 }
