@@ -14,17 +14,10 @@ import roboguice.inject.SharedPreferencesName;
 
 public class TwitterModule extends AbstractModule {
 
-    private final CompendiumApplication application;
-
-    public TwitterModule(CompendiumApplication application) {
-        this.application = application;
-    }
-
     @Override
     protected void configure() {
 
-        bind(DBUtil.class)
-                        .toProvider(new DBUtilProvider(application));
+        bind(DBUtil.class).toProvider(DBUtilProvider.class);
 
         bind(Twitter.class)
                 .annotatedWith(Slow.class)

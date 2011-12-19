@@ -19,7 +19,7 @@ public class CompendiumApplication extends RoboApplication {
 
     @Override
     protected void addApplicationModules(List<Module> modules) {
-        modules.add(new TwitterModule(this));
+        modules.add(new TwitterModule());
     }
 
 }

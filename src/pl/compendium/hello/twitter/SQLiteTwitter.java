@@ -1,24 +1,24 @@
 package pl.compendium.hello.twitter;
 
 import android.database.Cursor;
-import android.util.Log;
+import com.google.inject.Inject;
 import pl.compendium.hello.db.dao.TweetsRepository;
 import pl.compendium.hello.twitter.model.Tweet;
 
-import javax.inject.Inject;
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SQLiteTwitter implements Twitter {
+public class SQLiteTwitter implements Twitter, Closeable {
 
     private static final String TAG = SQLiteTwitter.class.getSimpleName();
     
-    @Inject
     TweetsRepository tweetsRepository;
-    
+
     @Inject
-    public void init(){
-        Log.i(TAG, "Creating SQLiteTwitter instance...");
+    public SQLiteTwitter(TweetsRepository tweetsRepository) {
+        this.tweetsRepository = tweetsRepository;
     }
 
     @Override
@@ -29,10 +29,11 @@ public class SQLiteTwitter implements Twitter {
 
         List<Tweet> tweets = new ArrayList<Tweet>(tweetCount);
         do {
+            int id = all.getInt(0);
             String msg = all.getString(1);
             String username = all.getString(2);
 
-            tweets.add(new Tweet(msg, username));
+            tweets.add(new Tweet(id, msg, username));
         } while (all.moveToNext());
 
         return tweets;
@@ -43,8 +44,17 @@ public class SQLiteTwitter implements Twitter {
         tweetsRepository.save(tweet);
     }
 
+    public void remove(Tweet tweet) {
+        tweetsRepository.delete(tweet);
+    }
+
     public Cursor publicTimelineCursor() {
         Cursor all = tweetsRepository.findAll();
         return all;
+    }
+
+    @Override
+    public void close() throws IOException {
+        tweetsRepository.close();
     }
 }

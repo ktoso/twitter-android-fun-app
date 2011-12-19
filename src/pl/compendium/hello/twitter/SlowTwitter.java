@@ -3,22 +3,14 @@ package pl.compendium.hello.twitter;
 import android.util.Log;
 import pl.compendium.hello.twitter.model.Tweet;
 
-import javax.inject.Singleton;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-@Singleton
 public class SlowTwitter extends FastTwitter implements Twitter {
 
     private static final String TAG = SlowTwitter.class.getSimpleName();
 
-    private String user;
-
     public SlowTwitter() {
-    }
-
-    public SlowTwitter(String username) {
-        user = username;
     }
 
     @Override
