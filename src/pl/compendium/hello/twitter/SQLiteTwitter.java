@@ -13,7 +13,7 @@ import java.util.List;
 public class SQLiteTwitter implements Twitter, Closeable {
 
     private static final String TAG = SQLiteTwitter.class.getSimpleName();
-    
+
     TweetsRepository tweetsRepository;
 
     @Inject
@@ -50,6 +50,10 @@ public class SQLiteTwitter implements Twitter, Closeable {
 
     public Cursor publicTimelineCursor() {
         return tweetsRepository.findAll();
+    }
+
+    public int publicTimelineSize() {
+        return publicTimelineCursor().getCount();
     }
 
     @Override

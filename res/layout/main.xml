@@ -8,7 +8,17 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="Show preferences"
-    />
+            />
+    <Button android:id="@+id/start_tweet_counter"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Start tweet counter Service"
+            />
+    <Button android:id="@+id/show_map"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Show a Map!"
+            />
     <TextView
             android:id="@+id/hello"
             android:layout_width="fill_parent"

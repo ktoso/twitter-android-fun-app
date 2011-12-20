@@ -2,6 +2,7 @@ package pl.compendium.hello.activity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import com.google.inject.Inject;
 import pl.compendium.hello.R;
 import pl.compendium.hello.db.DBConstants;
 import pl.compendium.hello.guice.annotation.Author;
+import pl.compendium.hello.service.TweetsCountService;
 import pl.compendium.hello.twitter.SQLiteTwitter;
 import pl.compendium.hello.twitter.model.Tweet;
 import roboguice.activity.RoboActivity;
@@ -46,6 +48,12 @@ public class MainActivity extends RoboActivity implements View.OnClickListener {
     @Inject
     LayoutInflater inflater;
 
+    @InjectView(R.id.start_tweet_counter)
+    Button startTweetCounterService;
+
+    @InjectView(R.id.show_map)
+    Button showMap;
+
     private SimpleCursorAdapter tweetsAdapter;
 
 
@@ -54,6 +62,22 @@ public class MainActivity extends RoboActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.main);
+
+        startTweetCounterService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, TweetsCountService.class);
+                startService(intent);
+            }
+        });
+
+        showMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MyMapActivity.class);
+                startActivity(intent);
+            }
+        });
 
         send.setOnClickListener(this);
 

@@ -8,4 +8,5 @@
     <!-- preference keys -->
     <string name="pk_username">pk_username</string>
     <string name="empty_text">#</string>
+    <string name="tweets_count">Tweets: </string>
 </resources>
