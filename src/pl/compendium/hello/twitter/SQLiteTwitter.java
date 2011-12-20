@@ -49,8 +49,7 @@ public class SQLiteTwitter implements Twitter, Closeable {
     }
 
     public Cursor publicTimelineCursor() {
-        Cursor all = tweetsRepository.findAll();
-        return all;
+        return tweetsRepository.findAll();
     }
 
     @Override

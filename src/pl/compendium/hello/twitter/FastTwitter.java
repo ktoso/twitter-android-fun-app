@@ -1,7 +1,5 @@
 package pl.compendium.hello.twitter;
 
-import com.google.inject.Inject;
-import pl.compendium.hello.db.dao.TweetsRepository;
 import pl.compendium.hello.twitter.model.Tweet;
 
 import java.util.Collections;

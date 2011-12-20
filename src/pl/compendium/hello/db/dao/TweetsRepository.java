@@ -60,7 +60,7 @@ public class TweetsRepository implements Closeable {
         }
     }
 
-    public void delete(Tweet tweet) {
+    public synchronized void delete(Tweet tweet) {
         db.beginTransaction();
 
         try {
@@ -77,6 +77,6 @@ public class TweetsRepository implements Closeable {
 
     @Override
     public void close() throws IOException {
-        db.close();
+           db.close();
     }
 }
