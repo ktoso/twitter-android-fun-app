@@ -14,9 +14,6 @@ public class FastTwitter implements Twitter {
     
     List<Tweet> tweets = newArrayList();
 
-    @Inject
-    TweetsRepository tweetsRepository;
-
     @Override
     public List<Tweet> publicTimeline() {
         return tweets;
@@ -25,8 +22,6 @@ public class FastTwitter implements Twitter {
     @Override
     public void post(Tweet tweet) {
         tweets.add(tweet);
-
-        tweetsRepository.save(tweet);
 
         sortTweets();
     }
